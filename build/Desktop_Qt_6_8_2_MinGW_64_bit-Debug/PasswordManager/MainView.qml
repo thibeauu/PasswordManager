@@ -1,7 +1,6 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
-
 Item {
     anchors.fill: parent
 
@@ -26,7 +25,9 @@ Item {
         model: passwordVault
         delegate: Item {
             width: parent.width
-            height: 100
+            height: 130
+
+            property bool showPassword: false
 
             Column {
                 anchors.fill: parent
@@ -48,6 +49,45 @@ Item {
                     text: "🌐 " + url
                     color: "#007acc"
                 }
+
+                Row {
+                            spacing: 8
+                            anchors.left: parent.left
+
+                            Text {
+                                text: "🔓 " + (showPassword ? password : "••••••••")
+                                color: "#222"
+                                font.family: "monospace"
+                            }
+
+                            Button {
+                                text: showPassword ? "🙈" : "👁️"
+                                onClicked: showPassword = !showPassword
+                                background: Rectangle {
+                                    color: "#f0f0f0"
+                                    radius: 4
+                                }
+                                contentItem: Text {
+                                    text: parent.text
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+
+                            Button {
+                                text: "📋"
+                                onClicked: passwordVault.copyToClipboard(password)
+                                background: Rectangle {
+                                    color: "#f0f0f0"
+                                    radius: 4
+                                }
+                                contentItem: Text {
+                                    text: parent.text
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+                        }
             }
 
             Rectangle {

@@ -3,7 +3,8 @@
 #include <QJsonArray>
 #include <QJsonDocument>
 #include <QJsonObject>
-
+#include <QClipboard>
+#include <QGuiApplication>
 
 PasswordVaultManager::PasswordVaultManager(QObject* parent): QAbstractListModel(parent){
     loadEntries();
@@ -120,4 +121,9 @@ void PasswordVaultManager::saveEntries() {
         file.write(doc.toJson());
         file.close();
     }
+}
+
+void PasswordVaultManager::copyToClipboard(const QString &text){
+    QClipboard *clipboard = QGuiApplication::clipboard();
+    clipboard->setText(text);
 }
