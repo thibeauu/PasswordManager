@@ -40,6 +40,11 @@ static constexpr auto qt_meta_stringdata_ZN20PasswordVaultManagerE = QtMocHelper
     "PasswordVaultManager",
     "loadEntries",
     "",
+    "addEntry",
+    "title",
+    "username",
+    "password",
+    "url",
     "PasswordRoles",
     "TitleRole",
     "UsernameRole",
@@ -60,31 +65,33 @@ Q_CONSTINIT static const uint qt_meta_data_ZN20PasswordVaultManagerE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       1,   14, // methods
+       2,   14, // methods
        0,    0, // properties
-       1,   21, // enums/sets
+       1,   36, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
  // methods: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   20,    2, 0x02,    2 /* Public */,
+       1,    0,   26,    2, 0x02,    2 /* Public */,
+       3,    4,   27,    2, 0x02,    3 /* Public */,
 
  // methods: parameters
     QMetaType::Void,
+    QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    4,    5,    6,    7,
 
  // enums: name, alias, flags, count, data
-       3,    3, 0x0,    8,   26,
+       8,    8, 0x0,    8,   41,
 
  // enum data: key, value
-       4, uint(PasswordVaultManager::TitleRole),
-       5, uint(PasswordVaultManager::UsernameRole),
-       6, uint(PasswordVaultManager::PasswordRole),
-       7, uint(PasswordVaultManager::UrlRole),
-       8, uint(PasswordVaultManager::NotesRole),
-       9, uint(PasswordVaultManager::TagsRole),
-      10, uint(PasswordVaultManager::CreatedAtRole),
-      11, uint(PasswordVaultManager::ModifiedAtRole),
+       9, uint(PasswordVaultManager::TitleRole),
+      10, uint(PasswordVaultManager::UsernameRole),
+      11, uint(PasswordVaultManager::PasswordRole),
+      12, uint(PasswordVaultManager::UrlRole),
+      13, uint(PasswordVaultManager::NotesRole),
+      14, uint(PasswordVaultManager::TagsRole),
+      15, uint(PasswordVaultManager::CreatedAtRole),
+      16, uint(PasswordVaultManager::ModifiedAtRole),
 
        0        // eod
 };
@@ -101,7 +108,13 @@ Q_CONSTINIT const QMetaObject PasswordVaultManager::staticMetaObject = { {
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<PasswordVaultManager, std::true_type>,
         // method 'loadEntries'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'addEntry'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -112,10 +125,10 @@ void PasswordVaultManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
     if (_c == QMetaObject::InvokeMetaMethod) {
         switch (_id) {
         case 0: _t->loadEntries(); break;
+        case 1: _t->addEntry((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4]))); break;
         default: ;
         }
     }
-    (void)_a;
 }
 
 const QMetaObject *PasswordVaultManager::metaObject() const
@@ -137,14 +150,14 @@ int PasswordVaultManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 1)
+        if (_id < 2)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 1;
+        _id -= 2;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 1)
+        if (_id < 2)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 1;
+        _id -= 2;
     }
     return _id;
 }

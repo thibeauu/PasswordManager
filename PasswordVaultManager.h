@@ -28,9 +28,12 @@ public:
     QHash<int, QByteArray> roleNames() const override;
 
     Q_INVOKABLE void loadEntries();
+    Q_INVOKABLE void addEntry(const QString& title, const QString& username, const QString& password, const QString& url);
+
 
 private:
     QList<PasswordEntry> entries;
+    void saveEntries();
 
 };
 
