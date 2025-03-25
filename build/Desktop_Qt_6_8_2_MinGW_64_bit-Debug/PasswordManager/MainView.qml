@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
+
 Item {
     anchors.fill: parent
 
@@ -26,7 +27,6 @@ Item {
         delegate: Item {
             width: parent.width
             height: 130
-
             property bool showPassword: false
 
             Column {
@@ -41,90 +41,94 @@ Item {
                 }
 
                 Text {
-                    text: "👤 " + username
+                    text: "🕤 " + username
                     color: "#444"
                 }
 
                 Text {
                     text: "🌐 " + url
                     color: "#007acc"
+                    font.underline: true
+                    MouseArea {
+                        anchors.fill: parent
+                        cursorShape: Qt.PointingHandCursor
+                        onClicked: passwordVault.openUrl(url)
+                    }
                 }
 
                 Row {
-                            spacing: 8
-                            anchors.left: parent.left
+                    spacing: 8
+                    anchors.left: parent.left
 
-                            Text {
-                                text: "🔓 " + (showPassword ? password : "••••••••")
-                                color: "#222"
-                                font.family: "monospace"
-                            }
+                    Text {
+                        text: "🔓 " + (showPassword ? password : "••••••••")
+                        color: "#222"
+                        font.family: "monospace"
+                    }
 
-                            Button {
-                                text: showPassword ? "🙈" : "👁️"
-                                onClicked: showPassword = !showPassword
-                                background: Rectangle {
-                                    color: "#f0f0f0"
-                                    radius: 4
-                                }
-                                contentItem: Text {
-                                    text: parent.text
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                            }
-
-                            Button {
-                                text: "📋"
-                                onClicked: passwordVault.copyToClipboard(password)
-                                background: Rectangle {
-                                    color: "#f0f0f0"
-                                    radius: 4
-                                }
-                                contentItem: Text {
-                                    text: parent.text
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                            }
-
-                            Button {
-                                text: "🗑️"
-                                onClicked: passwordVault.removeEntry(index);
-                                background: Rectangle {
-                                    color: "#f0f0f0"
-                                    radius: 4
-                                }
-
-                                contentItem: Text {
-                                    text: parent.text
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                            }
-
-                            Button {
-                                text: "✏️"
-                                onClicked: {
-                                    indexToEdit = index
-                                    editTitleField.text = title
-                                    editUsernameField.text = username
-                                    editPasswordField.text = password
-                                    editUrlField.text = url
-                                    editEntryDialog.open()
-                                }
-                                background: Rectangle {
-                                    color: "#f0f0f0"
-                                    radius: 4
-                                }
-                                contentItem: Text {
-                                    text: parent.text
-                                    horizontalAlignment: Text.AlignHCenter
-                                    verticalAlignment: Text.AlignVCenter
-                                }
-                            }
-
+                    Button {
+                        text: showPassword ? "🙈" : "👁️"
+                        onClicked: showPassword = !showPassword
+                        background: Rectangle {
+                            color: "#f0f0f0"
+                            radius: 4
                         }
+                        contentItem: Text {
+                            text: parent.text
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    Button {
+                        text: "📋"
+                        onClicked: passwordVault.copyToClipboard(password)
+                        background: Rectangle {
+                            color: "#f0f0f0"
+                            radius: 4
+                        }
+                        contentItem: Text {
+                            text: parent.text
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    Button {
+                        text: "🗑️"
+                        onClicked: passwordVault.removeEntry(index)
+                        background: Rectangle {
+                            color: "#f0f0f0"
+                            radius: 4
+                        }
+                        contentItem: Text {
+                            text: parent.text
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+
+                    Button {
+                        text: "✏️"
+                        onClicked: {
+                            indexToEdit = index
+                            editTitleField.text = title
+                            editUsernameField.text = username
+                            editPasswordField.text = password
+                            editUrlField.text = url
+                            editEntryDialog.open()
+                        }
+                        background: Rectangle {
+                            color: "#f0f0f0"
+                            radius: 4
+                        }
+                        contentItem: Text {
+                            text: parent.text
+                            horizontalAlignment: Text.AlignHCenter
+                            verticalAlignment: Text.AlignVCenter
+                        }
+                    }
+                }
             }
 
             Rectangle {
@@ -135,7 +139,6 @@ Item {
                 color: "#007acc"
             }
         }
-
         spacing: 12
         z: 1
     }
@@ -147,12 +150,10 @@ Item {
         anchors.bottom: parent.bottom
         anchors.bottomMargin: 20
         z: 1
-
         background: Rectangle {
             color: "#007acc"
             radius: 6
         }
-
         contentItem: Text {
             text: addButton.text
             color: "white"
@@ -160,20 +161,19 @@ Item {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
         }
-
         onClicked: addEntryDialog.open()
     }
 
     Dialog {
         id: addEntryDialog
         modal: true
+        property string passwordStrength: ""
         x: (parent.width - width) / 2
         y: (parent.height - height) / 2
         width: 400
         height: 300
         title: ""
         z: 10
-
         background: Rectangle {
             color: "#f5f5f5"
             radius: 12
@@ -231,6 +231,9 @@ Item {
                         border.color: "#cccccc"
                         radius: 6
                     }
+                    onTextChanged: {
+                        addEntryDialog.passwordStrength = passwordVault.checkPasswordStrength(passwordField.text)
+                    }
                 }
 
                 Button {
@@ -251,6 +254,15 @@ Item {
                         verticalAlignment: Text.AlignVCenter
                     }
                 }
+            }
+
+            Text {
+                text: addEntryDialog.passwordStrength === "" ? "" : "Strength: " + addEntryDialog.passwordStrength
+                color: addEntryDialog.passwordStrength === "Weak" ? "red"
+                     : addEntryDialog.passwordStrength === "Medium" ? "orange"
+                     : addEntryDialog.passwordStrength === "Strong" ? "green" : "black"
+                font.bold: true
+                font.pointSize: 12
             }
 
             TextField {
@@ -287,13 +299,11 @@ Item {
                             usernameField.text,
                             passwordField.text,
                             urlField.text
-                        );
-
+                        )
                         titleField.text = ""
                         usernameField.text = ""
                         passwordField.text = ""
                         urlField.text = ""
-
                         addEntryDialog.close()
                     }
                 }
@@ -317,7 +327,6 @@ Item {
         height: 300
         title: ""
         z: 10
-
         background: Rectangle {
             color: "#f5f5f5"
             radius: 12
@@ -401,7 +410,6 @@ Item {
                         horizontalAlignment: Text.AlignHCenter
                         verticalAlignment: Text.AlignVCenter
                     }
-
                     onClicked: {
                         passwordVault.updateEntry(
                             indexToEdit,
@@ -421,5 +429,4 @@ Item {
             }
         }
     }
-
 }

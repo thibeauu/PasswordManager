@@ -51,6 +51,8 @@ static constexpr auto qt_meta_stringdata_ZN20PasswordVaultManagerE = QtMocHelper
     "index",
     "updateEntry",
     "generateRandomPassword",
+    "openUrl",
+    "checkPasswordStrength",
     "PasswordRoles",
     "TitleRole",
     "UsernameRole",
@@ -71,20 +73,22 @@ Q_CONSTINIT static const uint qt_meta_data_ZN20PasswordVaultManagerE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       6,   14, // methods
+       8,   14, // methods
        0,    0, // properties
-       1,   78, // enums/sets
+       1,   96, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
  // methods: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   50,    2, 0x02,    2 /* Public */,
-       3,    4,   51,    2, 0x02,    3 /* Public */,
-       8,    1,   60,    2, 0x02,    8 /* Public */,
-      10,    1,   63,    2, 0x02,   10 /* Public */,
-      12,    5,   66,    2, 0x02,   12 /* Public */,
-      13,    0,   77,    2, 0x02,   18 /* Public */,
+       1,    0,   62,    2, 0x02,    2 /* Public */,
+       3,    4,   63,    2, 0x02,    3 /* Public */,
+       8,    1,   72,    2, 0x02,    8 /* Public */,
+      10,    1,   75,    2, 0x02,   10 /* Public */,
+      12,    5,   78,    2, 0x02,   12 /* Public */,
+      13,    0,   89,    2, 0x02,   18 /* Public */,
+      14,    1,   90,    2, 0x02,   19 /* Public */,
+      15,    1,   93,    2, 0x02,   21 /* Public */,
 
  // methods: parameters
     QMetaType::Void,
@@ -93,19 +97,21 @@ Q_CONSTINIT static const uint qt_meta_data_ZN20PasswordVaultManagerE[] = {
     QMetaType::Void, QMetaType::Int,   11,
     QMetaType::Void, QMetaType::Int, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,   11,    4,    5,    6,    7,
     QMetaType::QString,
+    QMetaType::Void, QMetaType::QString,    7,
+    QMetaType::QString, QMetaType::QString,    6,
 
  // enums: name, alias, flags, count, data
-      14,   14, 0x0,    8,   83,
+      16,   16, 0x0,    8,  101,
 
  // enum data: key, value
-      15, uint(PasswordVaultManager::TitleRole),
-      16, uint(PasswordVaultManager::UsernameRole),
-      17, uint(PasswordVaultManager::PasswordRole),
-      18, uint(PasswordVaultManager::UrlRole),
-      19, uint(PasswordVaultManager::NotesRole),
-      20, uint(PasswordVaultManager::TagsRole),
-      21, uint(PasswordVaultManager::CreatedAtRole),
-      22, uint(PasswordVaultManager::ModifiedAtRole),
+      17, uint(PasswordVaultManager::TitleRole),
+      18, uint(PasswordVaultManager::UsernameRole),
+      19, uint(PasswordVaultManager::PasswordRole),
+      20, uint(PasswordVaultManager::UrlRole),
+      21, uint(PasswordVaultManager::NotesRole),
+      22, uint(PasswordVaultManager::TagsRole),
+      23, uint(PasswordVaultManager::CreatedAtRole),
+      24, uint(PasswordVaultManager::ModifiedAtRole),
 
        0        // eod
 };
@@ -143,7 +149,13 @@ Q_CONSTINIT const QMetaObject PasswordVaultManager::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'generateRandomPassword'
-        QtPrivate::TypeAndForceComplete<QString, std::false_type>
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        // method 'openUrl'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'checkPasswordStrength'
+        QtPrivate::TypeAndForceComplete<QString, std::false_type>,
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
     >,
     nullptr
 } };
@@ -159,6 +171,9 @@ void PasswordVaultManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
         case 3: _t->removeEntry((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         case 4: _t->updateEntry((*reinterpret_cast< std::add_pointer_t<int>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[5]))); break;
         case 5: { QString _r = _t->generateRandomPassword();
+            if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
+        case 6: _t->openUrl((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 7: { QString _r = _t->checkPasswordStrength((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])));
             if (_a[0]) *reinterpret_cast< QString*>(_a[0]) = std::move(_r); }  break;
         default: ;
         }
@@ -184,14 +199,14 @@ int PasswordVaultManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 6)
+        if (_id < 8)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 6;
+        _id -= 8;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 6)
+        if (_id < 8)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 6;
+        _id -= 8;
     }
     return _id;
 }

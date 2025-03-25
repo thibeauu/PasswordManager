@@ -6,6 +6,7 @@
 #include <QClipboard>
 #include <QGuiApplication>
 #include <QRandomGenerator>
+#include <QDesktopServices>
 
 PasswordVaultManager::PasswordVaultManager(QObject* parent): QAbstractListModel(parent){
     loadEntries();
@@ -20,9 +21,7 @@ QVariant PasswordVaultManager::data(const QModelIndex& index, int role) const {
     if(!index.isValid() || index.row() < 0 || index.row() >= entries.size()){
         return QVariant();
     }
-
     const PasswordEntry& entry = entries.at(index.row());
-
     switch (role) {
     case TitleRole:
         return entry.title;
@@ -61,15 +60,12 @@ QHash<int, QByteArray> PasswordVaultManager::roleNames() const {
 void PasswordVaultManager::loadEntries() {
     beginResetModel();
     entries.clear();
-
     QFile file("passwords.json");
     if (file.open(QIODevice::ReadOnly)) {
         QByteArray data = file.readAll();
         file.close();
-
         QJsonDocument doc = QJsonDocument::fromJson(data);
         QJsonArray array = doc.array();
-
         for (const QJsonValue& val : array) {
             QJsonObject obj = val.toObject();
             entries.append(PasswordEntry(
@@ -84,10 +80,8 @@ void PasswordVaultManager::loadEntries() {
                 ));
         }
     }
-
     endResetModel();
 }
-
 
 void PasswordVaultManager::addEntry(const QString& title,
                                     const QString& username,
@@ -102,7 +96,6 @@ void PasswordVaultManager::addEntry(const QString& title,
 
 void PasswordVaultManager::saveEntries() {
     QJsonArray entryArray;
-
     for (const PasswordEntry& entry : entries) {
         QJsonObject obj;
         obj["title"] = entry.title;
@@ -115,7 +108,6 @@ void PasswordVaultManager::saveEntries() {
         obj["modifiedAt"] = entry.modifiedAt.toString(Qt::ISODate);
         entryArray.append(obj);
     }
-
     QJsonDocument doc(entryArray);
     QFile file("passwords.json");
     if (file.open(QIODevice::WriteOnly)) {
@@ -131,14 +123,11 @@ void PasswordVaultManager::copyToClipboard(const QString &text){
 
 void PasswordVaultManager::removeEntry(const int index) {
     if (index < 0 || index >= entries.size()) {
-        qWarning("Invalid index passed to removeEntry: %d", index);
         return;
     }
-
     beginRemoveRows(QModelIndex(), index, index);
     entries.removeAt(index);
     endRemoveRows();
-
     saveEntries();
 }
 
@@ -149,26 +138,21 @@ void PasswordVaultManager::updateEntry(int index,
                                        const QString &url)
 {
     if (index < 0 || index >= entries.size()) {
-        qWarning("Invalid index in updateEntry: %d", index);
         return;
     }
-
     PasswordEntry &entry = entries[index];
     entry.title = title;
     entry.username = username;
     entry.password = password;
     entry.url = url;
     entry.modifiedAt = QDateTime::currentDateTime();
-
     QModelIndex changedIndex = this->index(index);
     emit dataChanged(changedIndex, changedIndex);
-
     saveEntries();
 }
 
 QString PasswordVaultManager::generateRandomPassword() {
     int length = QRandomGenerator::global()->bounded(12, 29);
-
     const QString chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}";
     QString password;
     for (int i = 0; i < length; ++i) {
@@ -178,3 +162,30 @@ QString PasswordVaultManager::generateRandomPassword() {
     return password;
 }
 
+void PasswordVaultManager::openUrl(const QString &url) {
+    QDesktopServices::openUrl(QUrl(url));
+}
+
+QString PasswordVaultManager::checkPasswordStrength(const QString &password) {
+    if (password.length() < 8) {
+        return "Weak";
+    }
+    bool hasUpper = false;
+    bool hasLower = false;
+    bool hasDigit = false;
+    bool hasSymbol = false;
+    for (const QChar &c : password) {
+        if (c.isUpper()) hasUpper = true;
+        else if (c.isLower()) hasLower = true;
+        else if (c.isDigit()) hasDigit = true;
+        else hasSymbol = true;
+    }
+    int strengthScore = 0;
+    if (hasUpper) strengthScore++;
+    if (hasLower) strengthScore++;
+    if (hasDigit) strengthScore++;
+    if (hasSymbol) strengthScore++;
+    if (strengthScore <= 1) return "Weak";
+    else if (strengthScore == 2 || strengthScore == 3) return "Medium";
+    else return "Strong";
+}

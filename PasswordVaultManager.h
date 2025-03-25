@@ -33,6 +33,8 @@ public:
     Q_INVOKABLE void removeEntry(int index);
     Q_INVOKABLE void updateEntry(int index, const QString &title, const QString &username, const QString &password, const QString &url);
     Q_INVOKABLE QString generateRandomPassword();
+    Q_INVOKABLE void openUrl(const QString &url);
+    Q_INVOKABLE QString checkPasswordStrength(const QString &password);
 private:
     QList<PasswordEntry> entries;
     void saveEntries();
