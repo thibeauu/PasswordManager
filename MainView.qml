@@ -217,15 +217,39 @@ Item {
                 }
             }
 
-            TextField {
-                id: passwordField
-                placeholderText: "Password"
-                echoMode: TextInput.Password
+            RowLayout {
                 Layout.fillWidth: true
-                background: Rectangle {
-                    color: "#ffffff"
-                    border.color: "#cccccc"
-                    radius: 6
+                spacing: 8
+
+                TextField {
+                    id: passwordField
+                    placeholderText: "Password"
+                    echoMode: TextInput.Password
+                    Layout.fillWidth: true
+                    background: Rectangle {
+                        color: "#ffffff"
+                        border.color: "#cccccc"
+                        radius: 6
+                    }
+                }
+
+                Button {
+                    text: "Generate"
+                    onClicked: {
+                        passwordField.text = passwordVault.generateRandomPassword()
+                        passwordVault.copyToClipboard(passwordField.text)
+                    }
+                    background: Rectangle {
+                        color: "#007acc"
+                        radius: 6
+                    }
+                    contentItem: Text {
+                        text: parent.text
+                        color: "white"
+                        font.bold: true
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
                 }
             }
 

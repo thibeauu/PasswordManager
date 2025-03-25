@@ -5,6 +5,7 @@
 #include <QJsonObject>
 #include <QClipboard>
 #include <QGuiApplication>
+#include <QRandomGenerator>
 
 PasswordVaultManager::PasswordVaultManager(QObject* parent): QAbstractListModel(parent){
     loadEntries();
@@ -163,5 +164,17 @@ void PasswordVaultManager::updateEntry(int index,
     emit dataChanged(changedIndex, changedIndex);
 
     saveEntries();
+}
+
+QString PasswordVaultManager::generateRandomPassword() {
+    int length = QRandomGenerator::global()->bounded(12, 29);
+
+    const QString chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()_+-=[]{}";
+    QString password;
+    for (int i = 0; i < length; ++i) {
+        int index = QRandomGenerator::global()->bounded(chars.length());
+        password.append(chars.at(index));
+    }
+    return password;
 }
 
