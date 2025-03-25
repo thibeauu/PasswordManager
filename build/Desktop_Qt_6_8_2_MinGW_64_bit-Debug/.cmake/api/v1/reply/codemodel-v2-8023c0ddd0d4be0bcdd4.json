@@ -1,0 +1,196 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-9f97f91e3d7aa973c575.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "PasswordManager",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8,
+						9,
+						10,
+						11,
+						12,
+						13,
+						14,
+						15
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "all_aotstats::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_aotstats-Debug-7d2b4338b751cc7acc32.json",
+					"name" : "all_aotstats",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint-Debug-9df25bf9c711102106d8.json",
+					"name" : "all_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_json-Debug-77ebb1379d1b6fab35df.json",
+					"name" : "all_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmllint_module-Debug-d5caaf252713de4ec21c.json",
+					"name" : "all_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "all_qmltyperegistrations::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-all_qmltyperegistrations-Debug-996bb5a3641f6d8c655c.json",
+					"name" : "all_qmltyperegistrations",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager-Debug-938b3b430b426771e526.json",
+					"name" : "appPasswordManager",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_autogen-Debug-09744415bcc4c0cacbe6.json",
+					"name" : "appPasswordManager_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_autogen_timestamp_deps-Debug-570a29f3a93ae7140ac4.json",
+					"name" : "appPasswordManager_autogen_timestamp_deps",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_copy_qml::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_copy_qml-Debug-fb36478e31359172fd8b.json",
+					"name" : "appPasswordManager_copy_qml",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_copy_res::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_copy_res-Debug-3ce72f52e729c2962dae.json",
+					"name" : "appPasswordManager_copy_res",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_qmlimportscan::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_qmlimportscan-Debug-01fe09ef4f9ac11b821b.json",
+					"name" : "appPasswordManager_qmlimportscan",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_qmllint::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_qmllint-Debug-8d630d57952b97aba9a8.json",
+					"name" : "appPasswordManager_qmllint",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_qmllint_json::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_qmllint_json-Debug-0cc2fda5ef134e2c56c3.json",
+					"name" : "appPasswordManager_qmllint_json",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_qmllint_module::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_qmllint_module-Debug-818a5be6de90189faf62.json",
+					"name" : "appPasswordManager_qmllint_module",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "appPasswordManager_qmltyperegistration::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-appPasswordManager_qmltyperegistration-Debug-1bbff7a36255bee07d3b.json",
+					"name" : "appPasswordManager_qmltyperegistration",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "module_appPasswordManager_aotstats_target::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-module_appPasswordManager_aotstats_target-Debug-b3c6fd8a833341c1cccb.json",
+					"name" : "module_appPasswordManager_aotstats_target",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/thibe/Documents/Toegepaste-informatica/Projects/PasswordManager/build/Desktop_Qt_6_8_2_MinGW_64_bit-Debug",
+		"source" : "C:/Users/thibe/Documents/Toegepaste-informatica/Projects/PasswordManager"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}

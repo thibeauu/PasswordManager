@@ -1,0 +1,8 @@
+module PasswordManager
+typeinfo appPasswordManager.qmltypes
+prefer :/qt/qml/PasswordManager/
+Main 1.0 Main.qml
+SetupView 1.0 SetupView.qml
+LoginView 1.0 LoginView.qml
+MainView 1.0 MainView.qml
+
