@@ -47,6 +47,8 @@ static constexpr auto qt_meta_stringdata_ZN20PasswordVaultManagerE = QtMocHelper
     "url",
     "copyToClipboard",
     "text",
+    "removeEntry",
+    "index",
     "PasswordRoles",
     "TitleRole",
     "UsernameRole",
@@ -67,35 +69,37 @@ Q_CONSTINIT static const uint qt_meta_data_ZN20PasswordVaultManagerE[] = {
       12,       // revision
        0,       // classname
        0,    0, // classinfo
-       3,   14, // methods
+       4,   14, // methods
        0,    0, // properties
-       1,   45, // enums/sets
+       1,   54, // enums/sets
        0,    0, // constructors
        0,       // flags
        0,       // signalCount
 
  // methods: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   32,    2, 0x02,    2 /* Public */,
-       3,    4,   33,    2, 0x02,    3 /* Public */,
-       8,    1,   42,    2, 0x02,    8 /* Public */,
+       1,    0,   38,    2, 0x02,    2 /* Public */,
+       3,    4,   39,    2, 0x02,    3 /* Public */,
+       8,    1,   48,    2, 0x02,    8 /* Public */,
+      10,    1,   51,    2, 0x02,   10 /* Public */,
 
  // methods: parameters
     QMetaType::Void,
     QMetaType::Void, QMetaType::QString, QMetaType::QString, QMetaType::QString, QMetaType::QString,    4,    5,    6,    7,
     QMetaType::Void, QMetaType::QString,    9,
+    QMetaType::Void, QMetaType::Int,   11,
 
  // enums: name, alias, flags, count, data
-      10,   10, 0x0,    8,   50,
+      12,   12, 0x0,    8,   59,
 
  // enum data: key, value
-      11, uint(PasswordVaultManager::TitleRole),
-      12, uint(PasswordVaultManager::UsernameRole),
-      13, uint(PasswordVaultManager::PasswordRole),
-      14, uint(PasswordVaultManager::UrlRole),
-      15, uint(PasswordVaultManager::NotesRole),
-      16, uint(PasswordVaultManager::TagsRole),
-      17, uint(PasswordVaultManager::CreatedAtRole),
-      18, uint(PasswordVaultManager::ModifiedAtRole),
+      13, uint(PasswordVaultManager::TitleRole),
+      14, uint(PasswordVaultManager::UsernameRole),
+      15, uint(PasswordVaultManager::PasswordRole),
+      16, uint(PasswordVaultManager::UrlRole),
+      17, uint(PasswordVaultManager::NotesRole),
+      18, uint(PasswordVaultManager::TagsRole),
+      19, uint(PasswordVaultManager::CreatedAtRole),
+      20, uint(PasswordVaultManager::ModifiedAtRole),
 
        0        // eod
 };
@@ -121,7 +125,10 @@ Q_CONSTINIT const QMetaObject PasswordVaultManager::staticMetaObject = { {
         QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
         // method 'copyToClipboard'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>
+        QtPrivate::TypeAndForceComplete<const QString &, std::false_type>,
+        // method 'removeEntry'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        QtPrivate::TypeAndForceComplete<int, std::false_type>
     >,
     nullptr
 } };
@@ -134,6 +141,7 @@ void PasswordVaultManager::qt_static_metacall(QObject *_o, QMetaObject::Call _c,
         case 0: _t->loadEntries(); break;
         case 1: _t->addEntry((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[2])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[3])),(*reinterpret_cast< std::add_pointer_t<QString>>(_a[4]))); break;
         case 2: _t->copyToClipboard((*reinterpret_cast< std::add_pointer_t<QString>>(_a[1]))); break;
+        case 3: _t->removeEntry((*reinterpret_cast< std::add_pointer_t<int>>(_a[1]))); break;
         default: ;
         }
     }
@@ -158,14 +166,14 @@ int PasswordVaultManager::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 3)
+        if (_id < 4)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 3;
+        _id -= 4;
     }
     if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 3)
+        if (_id < 4)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 3;
+        _id -= 4;
     }
     return _id;
 }

@@ -127,3 +127,17 @@ void PasswordVaultManager::copyToClipboard(const QString &text){
     QClipboard *clipboard = QGuiApplication::clipboard();
     clipboard->setText(text);
 }
+
+void PasswordVaultManager::removeEntry(const int index) {
+    if (index < 0 || index >= entries.size()) {
+        qWarning("Invalid index passed to removeEntry: %d", index);
+        return;
+    }
+
+    beginRemoveRows(QModelIndex(), index, index);
+    entries.removeAt(index);
+    endRemoveRows();
+
+    saveEntries();
+}
+

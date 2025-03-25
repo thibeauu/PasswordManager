@@ -30,6 +30,7 @@ public:
     Q_INVOKABLE void loadEntries();
     Q_INVOKABLE void addEntry(const QString& title, const QString& username, const QString& password, const QString& url);
     Q_INVOKABLE void copyToClipboard(const QString &text);
+    Q_INVOKABLE void removeEntry(int index);
 
 private:
     QList<PasswordEntry> entries;

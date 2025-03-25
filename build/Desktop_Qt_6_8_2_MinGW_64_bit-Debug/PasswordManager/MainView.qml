@@ -87,6 +87,21 @@ Item {
                                     verticalAlignment: Text.AlignVCenter
                                 }
                             }
+
+                            Button {
+                                text: "🗑️"
+                                onClicked: passwordVault.removeEntry(index);
+                                background: Rectangle {
+                                    color: "#f0f0f0"
+                                    radius: 4
+                                }
+
+                                contentItem: Text {
+                                    text: parent.text
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
                         }
             }
 
