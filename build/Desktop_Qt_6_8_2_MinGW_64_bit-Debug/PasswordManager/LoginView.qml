@@ -20,7 +20,7 @@ Item {
             spacing: 10
 
             Label {
-                text: "Enter your Master Password to Log In"
+                text: "Enter your Master Password"
                 font.bold: true
                 font.pointSize: 14
                 color: "#007acc"

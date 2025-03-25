@@ -19,3 +19,4 @@ PasswordEntry::PasswordEntry(const QString& title,
     createdAt(createdAt),
     modifiedAt(modifiedAt)
 {}
+

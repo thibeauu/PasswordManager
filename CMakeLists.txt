@@ -25,6 +25,8 @@ qt_add_qml_module(appPasswordManager
         QML_FILES SetupView.qml
         QML_FILES LoginView.qml
         QML_FILES MainView.qml
+        SOURCES PasswordVaultManager.cpp
+        SOURCES PasswordVaultManager.h
 )
 
 # Qt for iOS sets MACOSX_BUNDLE_GUI_IDENTIFIER automatically since Qt 6.1.

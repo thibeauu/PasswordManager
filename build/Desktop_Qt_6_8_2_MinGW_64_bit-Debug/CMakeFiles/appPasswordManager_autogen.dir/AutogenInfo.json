@@ -801,6 +801,12 @@
 			"MU",
 			"EWIEGA46WW/moc_PasswordStorage.cpp",
 			null
+		],
+		[
+			"C:/Users/thibe/Documents/Toegepaste-informatica/Projects/PasswordManager/PasswordVaultManager.h",
+			"MU",
+			"EWIEGA46WW/moc_PasswordVaultManager.cpp",
+			null
 		]
 	],
 	"HEADER_EXTENSIONS" : [ "h", "hh", "h++", "hm", "hpp", "hxx", "in", "txx" ],
@@ -909,6 +915,11 @@
 		],
 		[
 			"C:/Users/thibe/Documents/Toegepaste-informatica/Projects/PasswordManager/PasswordEntry.cpp",
+			"MU",
+			null
+		],
+		[
+			"C:/Users/thibe/Documents/Toegepaste-informatica/Projects/PasswordManager/PasswordVaultManager.cpp",
 			"MU",
 			null
 		],

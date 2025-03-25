@@ -16,7 +16,6 @@ public:
                   const QStringList& tags = {},
                   const QDateTime& createdAt = QDateTime::currentDateTime(),
                   const QDateTime& modifiedAt = QDateTime::currentDateTime());
-private:
     QString title;
     QString username;
     QString password;
@@ -26,6 +25,8 @@ private:
     QDateTime createdAt;
     QDateTime modifiedAt;
 };
+
+
 
 #endif // PASSWORDENTRY_H
 
