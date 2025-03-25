@@ -7,7 +7,7 @@ Item {
     Rectangle {
         id: blurLayer
         anchors.fill: parent
-        visible: addEntryDialog.visible
+        visible: addEntryDialog.visible || editEntryDialog.visible
         color: "#000000"
         opacity: 0.3
         z: 9
@@ -102,6 +102,28 @@ Item {
                                     verticalAlignment: Text.AlignVCenter
                                 }
                             }
+
+                            Button {
+                                text: "✏️"
+                                onClicked: {
+                                    indexToEdit = index
+                                    editTitleField.text = title
+                                    editUsernameField.text = username
+                                    editPasswordField.text = password
+                                    editUrlField.text = url
+                                    editEntryDialog.open()
+                                }
+                                background: Rectangle {
+                                    color: "#f0f0f0"
+                                    radius: 4
+                                }
+                                contentItem: Text {
+                                    text: parent.text
+                                    horizontalAlignment: Text.AlignHCenter
+                                    verticalAlignment: Text.AlignVCenter
+                                }
+                            }
+
                         }
             }
 
@@ -259,4 +281,121 @@ Item {
             }
         }
     }
+
+    property int indexToEdit: -1
+
+    Dialog {
+        id: editEntryDialog
+        modal: true
+        x: (parent.width - width) / 2
+        y: (parent.height - height) / 2
+        width: 400
+        height: 300
+        title: ""
+        z: 10
+
+        background: Rectangle {
+            color: "#f5f5f5"
+            radius: 12
+            border.color: "#007acc"
+            border.width: 2
+        }
+
+        ColumnLayout {
+            anchors.fill: parent
+            anchors.margins: 20
+            spacing: 16
+
+            Text {
+                text: "Edit Password"
+                font.bold: true
+                font.pointSize: 16
+                color: "#222"
+                horizontalAlignment: Text.AlignHCenter
+                Layout.alignment: Qt.AlignHCenter
+            }
+
+            TextField {
+                id: editTitleField
+                placeholderText: "Title"
+                Layout.fillWidth: true
+                background: Rectangle {
+                    color: "#ffffff"
+                    border.color: "#cccccc"
+                    radius: 6
+                }
+            }
+
+            TextField {
+                id: editUsernameField
+                placeholderText: "Username"
+                Layout.fillWidth: true
+                background: Rectangle {
+                    color: "#ffffff"
+                    border.color: "#cccccc"
+                    radius: 6
+                }
+            }
+
+            TextField {
+                id: editPasswordField
+                placeholderText: "Password"
+                echoMode: TextInput.Password
+                Layout.fillWidth: true
+                background: Rectangle {
+                    color: "#ffffff"
+                    border.color: "#cccccc"
+                    radius: 6
+                }
+            }
+
+            TextField {
+                id: editUrlField
+                placeholderText: "URL"
+                Layout.fillWidth: true
+                background: Rectangle {
+                    color: "#ffffff"
+                    border.color: "#cccccc"
+                    radius: 6
+                }
+            }
+
+            RowLayout {
+                Layout.alignment: Qt.AlignRight
+                spacing: 12
+
+                Button {
+                    text: "Save"
+                    background: Rectangle {
+                        color: "#007acc"
+                        radius: 6
+                    }
+                    contentItem: Text {
+                        text: "Save"
+                        color: "white"
+                        font.bold: true
+                        horizontalAlignment: Text.AlignHCenter
+                        verticalAlignment: Text.AlignVCenter
+                    }
+
+                    onClicked: {
+                        passwordVault.updateEntry(
+                            indexToEdit,
+                            editTitleField.text,
+                            editUsernameField.text,
+                            editPasswordField.text,
+                            editUrlField.text
+                        )
+                        editEntryDialog.close()
+                    }
+                }
+
+                Button {
+                    text: "Cancel"
+                    onClicked: editEntryDialog.close()
+                }
+            }
+        }
+    }
+
 }

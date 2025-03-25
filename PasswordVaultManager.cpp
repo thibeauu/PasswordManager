@@ -141,3 +141,27 @@ void PasswordVaultManager::removeEntry(const int index) {
     saveEntries();
 }
 
+void PasswordVaultManager::updateEntry(int index,
+                                       const QString &title,
+                                       const QString &username,
+                                       const QString &password,
+                                       const QString &url)
+{
+    if (index < 0 || index >= entries.size()) {
+        qWarning("Invalid index in updateEntry: %d", index);
+        return;
+    }
+
+    PasswordEntry &entry = entries[index];
+    entry.title = title;
+    entry.username = username;
+    entry.password = password;
+    entry.url = url;
+    entry.modifiedAt = QDateTime::currentDateTime();
+
+    QModelIndex changedIndex = this->index(index);
+    emit dataChanged(changedIndex, changedIndex);
+
+    saveEntries();
+}
+
